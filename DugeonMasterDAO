@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.dao;
+
+import conection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.xml.transform.Result;
+import model.bean.DugeonMaster;
+
+
+/**
+ *
+ * @author nefif
+ */
+public class DugeonMasterDAO {
+   
+        public void create(DugeonMaster dm){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+       
+        try {
+            stmt = con.prepareStatement("INSERT INTO dugeon_master(nome_dm,senha) VALUES(?,?)");
+            stmt.setString(1,dm.getNomeDoUsuario());
+            stmt.setString(2,dm.getSenha());
+          
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+                  
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }    
+        
+    } 
+        
+
+        public boolean checkLogin(String nomeDoUsuario, String senha){
+
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+         
+        boolean check = false;
+        
+        
+            try {
+                stmt = con.prepareStatement("SELECT * FROM dugeon_master WHERE nome_dm = ? and senha = ?");
+                stmt.setString(1,nomeDoUsuario);
+                stmt.setString(2,senha);
+                
+                
+                rs = stmt.executeQuery();
+                
+                if(rs.next()){
+                      
+                    check = true;
+                    
+                }
+                        
+                        
+            } catch (SQLException ex) {
+                Logger.getLogger(JogadorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                ConnectionFactory.closeConnection(con, (com.mysql.jdbc.PreparedStatement) stmt, rs);
+            }
+        
+            
+            return check ;
+        } 
+        
+        
+        
+        }
