@@ -1,0 +1,214 @@
+//Class DUGEON MASTER
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.bean;
+
+/**
+ *
+ * @author nefif
+ */
+public class DugeonMaster {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeDoUsuario() {
+        return nomeDoUsuario;
+    }
+
+    public void setNomeDoUsuario(String nomeDoUsuario) {
+        this.nomeDoUsuario = nomeDoUsuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    private int id;
+    private String nomeDoUsuario;
+    private String senha;
+    
+}
+
+
+//Class JOGADOR
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.bean;
+
+/**
+ *
+ * @author nefif
+ */
+public class Jogador {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeDoJogador() {
+        return nomeDoJogador;
+    }
+
+    public void setNomeDoJogador(String nomeDoJogador) {
+        this.nomeDoJogador = nomeDoJogador;
+    }
+
+    public String getClasseDoPersonagem() {
+        return classeDoPersonagem;
+    }
+
+    public void setClasseDoPersonagem(String classeDoPersonagem) {
+        this.classeDoPersonagem = classeDoPersonagem;
+    }
+
+    public int getNivelDoPersonagem() {
+        return nivelDoPersonagem;
+    }
+
+    public void setNivelDoPersonagem(int nivelDoPersonagem) {
+        this.nivelDoPersonagem = nivelDoPersonagem;
+    }
+    int id;
+    String nomeDoJogador;
+    String classeDoPersonagem;
+    int nivelDoPersonagem;
+}
+
+
+//CLASS MONSTRO
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.bean;
+
+/**
+ *
+ * @author nefif
+ */
+public class Monstro {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeMonstro() {
+        return nomeMonstro;
+    }
+
+    public void setNomeMonstro(String nomeMonstro) {
+        this.nomeMonstro = nomeMonstro;
+    }
+
+    public String getDadosDeVida() {
+        return dadosDeVida;
+    }
+
+    public void setDadosDeVida(String dadosDeVida) {
+        this.dadosDeVida = dadosDeVida;
+    }
+
+    public int getNivelDeDesafio() {
+        return nivelDeDesafio;
+    }
+
+    public void setNivelDeDesafio(int nivelDeDesafio) {
+        this.nivelDeDesafio = nivelDeDesafio;
+    }
+
+    public String getAmbiente() {
+        return ambiente;
+    }
+
+    public void setAmbiente(String ambiente) {
+        this.ambiente = ambiente;
+    }
+    
+    private int id;
+    private String nomeMonstro;
+    private String dadosDeVida; 
+    private int nivelDeDesafio;
+    private String ambiente;
+    private String tipoDoMonstro;
+    private String tamanho;
+    private String ataque;
+    private String classeDeArmadura;
+    private String habilidades;
+
+    public String getTipoDoMonstro() {
+        return tipoDoMonstro;
+    }
+
+    public void setTipoDoMonstro(String tipoDoMonstro) {
+        this.tipoDoMonstro = tipoDoMonstro;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public String getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(String ataque) {
+        this.ataque = ataque;
+    }
+
+    public String getClasseDeArmadura() {
+        return classeDeArmadura;
+    }
+
+    public void setClasseDeArmadura(String classeDeArmadura) {
+        this.classeDeArmadura = classeDeArmadura;
+    }
+
+    public String getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(String habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    @Override
+    public String toString() {
+        return getAmbiente(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+}
+
