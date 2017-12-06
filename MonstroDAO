@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.dao;
+
+import conection.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.bean.Monstro;
+
+/**
+ *
+ * @author nefif
+ */
+public class MonstroDAO {
+    
+    public void create(Monstro m){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = con.prepareStatement("INSERT INTO monstros(nome_monstro,dados_de_vida,nivel_de_desafio,ambiente,tipo_de_monstro,tamanho,ataque,classe_de_armadura,habilidades) VALUES(?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1,m.getNomeMonstro());
+            stmt.setString(2,m.getDadosDeVida());
+            stmt.setInt(3, m.getNivelDeDesafio());
+            stmt.setString(4, m.getAmbiente());
+            stmt.setString(5, m.getTipoDoMonstro());
+            stmt.setString(6, m.getTamanho());
+            stmt.setString(7, m.getAtaque());
+            stmt.setString(8, m.getClasseDeArmadura());
+            stmt.setString(9, m.getHabilidades());
+          
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+                  
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    
+            public List<Monstro> read(){
+
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Monstro> monstros = new ArrayList<>();
+        
+            try {
+                stmt = con.prepareStatement("SELECT * FROM monstro");
+                stmt.executeQuery();
+                rs = stmt.executeQuery();
+                
+                while(rs.next()){
+                    Monstro monstro = new Monstro();
+                    monstro.setId(rs.getInt("Id_monstro"));
+                    monstro.setNomeMonstro(rs.getString("nome_monstro"));
+                    monstro.setDadosDeVida(rs.getString("dados_de_vida"));
+                    monstro.setNivelDeDesafio(rs.getInt("nivel_de_desafio"));
+                    monstro.setAmbiente(rs.getString("ambiente"));
+                    monstro.setTipoDoMonstro(rs.getString("tipo_de_monstro"));
+                    monstro.setTamanho(rs.getString("tamanho"));
+                    monstro.setAtaque(rs.getString("ataque"));
+                    monstro.setClasseDeArmadura(rs.getString("classe_de_armadura"));
+                    monstro.setHabilidades(rs.getString("habidade"));                  
+                    
+                   
+                }
+                        
+                        
+            } catch (SQLException ex) {
+                Logger.getLogger(MonstroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                ConnectionFactory.closeConnection(con, (com.mysql.jdbc.PreparedStatement) stmt, rs);
+            }
+        
+            
+            return monstros;
+        } 
+    
+    
+}
